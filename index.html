@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Countdown – Sydney</title>
+<style>
+  html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0f172a;color:#e5e7eb}
+  .wrap{height:100%;display:grid;place-items:center;text-align:center;padding:2rem}
+  h1{margin:0 0 .5rem;font-size:clamp(1.2rem,2vw,1.6rem);font-weight:700;letter-spacing:.3px}
+  #timer{font-variant-numeric:tabular-nums;font-size:clamp(2rem,8vw,6rem);line-height:1.05}
+  #sub{opacity:.85;margin-top:.75rem;font-size:clamp(.9rem,1.5vw,1.1rem)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div>
+      <h1>Countdown to New Year (Sydney)</h1>
+      <div id="timer" aria-live="polite">…</div>
+      <div id="sub">until December 31, 2025, 11:59 PM (Australia/Sydney)</div>
+    </div>
+  </div>
+<script>
+  // Target is *Sydney local time* on that date (AEDT = UTC+11 in late Dec 2025)
+  const target = new Date("2025-12-31T23:59:00+11:00");
+
+  const timerEl = document.getElementById("timer");
+  const pad = n => n.toString().padStart(2,"0");
+
+  function tick(){
+    let diff = target - new Date();
+    if (diff < 0) diff = 0;
+
+    const days = Math.floor(diff / 86400000);              // 24*60*60*1000
+    const hours = Math.floor((diff % 86400000) / 3600000); // 60*60*1000
+    const mins = Math.floor((diff % 3600000) / 60000);     // 60*1000
+    const secs = Math.floor((diff % 60000) / 1000);
+
+    timerEl.textContent = `${days} days ${pad(hours)}:${pad(mins)}:${pad(secs)}`;
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
