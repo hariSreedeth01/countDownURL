@@ -1,1 +1,2 @@
-A lightweight, fully customizable new tab homepage with a live countdown, quick links, and responsive design — works seamlessly on Chrome and Brave.
+A lightweight, fully customizable new tab homepage with a live countdown, quick links, and responsive design. Works on both Chrome and Brave.
+Requires New Tab Redirect extension.
